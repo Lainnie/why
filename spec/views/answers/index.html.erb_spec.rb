@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "answers/index", :type => :view do
   before(:each) do
     assign(:answers, [
-      Answer.create!(),
-      Answer.create!()
+      FactoryGirl.create(:answer),
+      FactoryGirl.create(:answer)
     ])
   end
 
