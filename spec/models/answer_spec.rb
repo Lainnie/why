@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pp'
 
 RSpec.describe Answer, :type => :model do
   subject { FactoryGirl.create(:answer) }
