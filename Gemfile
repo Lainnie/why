@@ -8,6 +8,7 @@ gem 'mysql2'
 # Use SCSS and Bootstrap for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem "font-awesome-rails"
 gem 'autoprefixer-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -27,6 +28,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   # Factory girl replace Fixture
   gem 'factory_girl_rails'
+  # Use Capibara for acceptance testing
+  gem 'capybara'
 end
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
