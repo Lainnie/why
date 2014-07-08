@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
-  
-  #attr_accessor :title, :content, :view, :interest, :active
+
+  include Interest
+
   validates :title,
             :content,
             presence: true
@@ -13,8 +14,4 @@ class Question < ActiveRecord::Base
 
   has_many :answers
 
-  def update_interest(vote)
-    self.interest += vote
-    self.save
-  end
 end

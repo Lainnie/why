@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :answer do
+
     content "MyString"
-    interest 1
-    question nil
+    interest 0
+    question
   end
 end
