@@ -1,4 +1,5 @@
 class Answer < ActiveRecord::Base
+  default_scope { where('question_id = ?', 8) }
 
   include Interest
 

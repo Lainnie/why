@@ -9,6 +9,7 @@ RSpec.describe "answers/new", :type => :view do
     render
 
     assert_select "form[action=?][method=?]", answers_path, "post" do
+      assert_select 'textarea[name=?]', 'answer[content]'
     end
   end
 end

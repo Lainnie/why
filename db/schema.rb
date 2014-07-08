@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708115800) do
+ActiveRecord::Schema.define(version: 20140708215828) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
-    t.integer  "interest"
+    t.integer  "interest",    default: 0
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140708115800) do
     t.string   "title"
     t.string   "content"
     t.integer  "view"
-    t.integer  "interest"
+    t.integer  "interest",   default: 0
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"

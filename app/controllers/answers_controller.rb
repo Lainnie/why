@@ -64,11 +64,12 @@ class AnswersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
+      redirect_to root_path if params[:question_id].nil?
       @answer = Answer.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params[:answer]
+      params.require(:answer).permit(:content)
     end
 end
