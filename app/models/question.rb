@@ -14,5 +14,6 @@ class Question < ActiveRecord::Base
   validates :active, inclusion: { in: [true, false] }
 
   has_many :answers
+  belongs_to :user
 
 end
