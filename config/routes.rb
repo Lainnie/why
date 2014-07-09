@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'search#index'
+  root 'questions#index'
   devise_for :users
   get 'search' => 'search#index', as: 'search'
   resources :questions do
