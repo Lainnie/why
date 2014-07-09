@@ -1,4 +1,3 @@
-require 'pp'
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 

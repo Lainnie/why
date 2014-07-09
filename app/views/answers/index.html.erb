@@ -1,29 +1,55 @@
-<h1>Listing answers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th>Interest</th>
-      <th>Creation</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
+<section id='detail' class=''>
+  <div id="question" class='row'>
+    <div class='col-xs-12'>
+      <h1><%= @question.title %></h1>
+    </div>
+    <div class='col-xs-10'>
+      <p><%= @question.content %></p>
+      <div class="more">
+        <span class='time'>Created: <%= @question.updated_at %></span> 
+        <span class='time'>Last update: <%= @question.updated_at %></span> 
+      </div>
+    </div>
+    <div class="info col-xs-2">
+      <div>
+        <i class="fa fa-star"></i><%= @question.interest %>
+      </div>
+      <div>
+        <i class="fa fa-eye"></i><%= @question.view %>
+      </div>
+      <div>
+        <% if @question.active %>
+          <i class="fa fa-unlock-alt"></i>
+        <% else %>
+          <i class="fa fa-lock"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="group">
+    <h2><%= @answers.size %> Answer(s)</h2>
+  </div>
+  <div id="answer">
     <% @answers.each do |answer| %>
-      <tr>
-        <td><%= truncate(answer.content, length: 50, omission: '...') %></td>
-        <td><%= answer.interest %></td>
-        <td><%= answer.created_at %></td>
-        <td><%= link_to 'Show', question_answer_path(@question, answer) %></td>
-        <td><%= link_to 'Edit', edit_question_answer_path(@question, answer) %></td>
-        <td><%= link_to 'Destroy', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="answer row">
+      <div class='content col-xs-10'>
+        <%= answer.content %>
+        <div class="more">
+          <span class='time'>Created: <%= answer.updated_at %></span> 
+          <span class='time'>Last update: <%= answer.updated_at %></span> 
+        </div>
+      </div>
+      <div class="info col-xs-2">
+        <div>
+          <i class="fa fa-star"></i><%= answer.interest %>
+        </div>
+      </div>
+    </div>
+    <hr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Answer', new_question_answer_path(@question) %>
+  </div>
+  <div class="group">
+    <h2>Your answer</h2>
+  </div>
+  <%= render 'form' %>
+</section>

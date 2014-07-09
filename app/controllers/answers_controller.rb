@@ -6,6 +6,7 @@ class AnswersController < ApplicationController
   # GET /answers.json
   def index
     @answers = @question.answers
+    @answer = Answer.new
   end
 
   # GET /answers/1
