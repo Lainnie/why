@@ -33,7 +33,7 @@ class AnswersController < ApplicationController
         format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
-        format.html { render :new }
+        format.html { redirect_to question_answers_path(@question), alert: 'Answer was not created.' }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end

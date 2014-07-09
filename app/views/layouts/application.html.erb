@@ -10,8 +10,8 @@
   <%= render 'shared/nav' %>
   <%= render 'shared/search_box' %>
   <div class="flash">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p class="notice  <%= 'hide' unless notice %>"><%= notice %></p>
+    <p class="alert  <%= 'hide' unless alert %>"><%= alert %></p>
   </div>
   <%= yield %>
 </body>
