@@ -15,6 +15,9 @@
     <%= f.label :content %>
     <%= f.text_area :content %>
   </div>
+  <div class="field">
+    <%= f.hidden_field :question_id, value: @question.id %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
