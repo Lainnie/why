@@ -9,5 +9,8 @@ FactoryGirl.define do
     factory :answer_build do
       content 'If the customization at the views level is not enough, you can customize each controller by following these steps'
     end
+    factory :bad_answer do
+      content 'ss'
+    end
   end
 end

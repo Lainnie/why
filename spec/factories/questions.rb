@@ -19,5 +19,8 @@ FactoryGirl.define do
         FactoryGirl.create_list(:answer, evaluator.answers_count, question: question)
       end
     end
+    factory :bad_question do
+      title 'sdsd'
+    end
   end
 end

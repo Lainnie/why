@@ -24,11 +24,11 @@ RSpec.describe QuestionsController, :type => :controller do
   # Question. As you add validations to Question, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.build(:question).attributes
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.build(:bad_question).attributes
   }
 
   # This should return the minimal set of values that should be in the session
