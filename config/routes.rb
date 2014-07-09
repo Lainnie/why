@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root 'questions#index'
+  root 'search#index'
   devise_for :users
+  get 'search' => 'search#index', as: 'search'
   resources :questions do
     resources :answers
   end

@@ -10,7 +10,19 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :interest, value: 0 %>
+    <%= f.hidden_field :active, value: true %>
+    <%= f.hidden_field :view, value: 0 %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
