@@ -8,7 +8,7 @@ RSpec.describe "answers/index", :type => :view do
     ])
   end
 
-  it "renders a list of answers" do
+  xit "renders a list of answers" do
     render
   end
 end
