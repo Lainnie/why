@@ -35,11 +35,14 @@ RSpec.describe AnswersController, :type => :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # AnswersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+  
+  # Create question for nested answer
+  let(:question) { FactoryGirl.create(:question) }
 
   describe "GET index" do
     it "assigns all answers as @answers" do
       answer = Answer.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, {question_id: question.to_param}, valid_session
       expect(assigns(:answers)).to eq([answer])
     end
   end
@@ -47,14 +50,14 @@ RSpec.describe AnswersController, :type => :controller do
   describe "GET show" do
     it "assigns the requested answer as @answer" do
       answer = Answer.create! valid_attributes
-      get :show, {:id => answer.to_param}, valid_session
+      get :show, {:id => answer.to_param, question_id: question.to_param}, valid_session
       expect(assigns(:answer)).to eq(answer)
     end
   end
 
   describe "GET new" do
     it "assigns a new answer as @answer" do
-      get :new, {question_id: 1}, valid_session
+      get :new, {question_id: question.to_param}, valid_session
       expect(assigns(:answer)).to be_a_new(Answer)
     end
   end
