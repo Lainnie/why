@@ -26,6 +26,7 @@ gem 'quiet_assets', group: :development
 group :development, :test do
   # Use Rspec for testing
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'database_cleaner'
   # Factory girl replace Fixture
   gem 'factory_girl_rails'
   # Use Capibara for acceptance testing

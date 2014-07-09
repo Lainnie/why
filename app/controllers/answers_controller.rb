@@ -25,7 +25,6 @@ class AnswersController < ApplicationController
   # POST /answers
   # POST /answers.json
   def create
-    pp answer_params
     @answer = Answer.new(answer_params)
 
     respond_to do |format|
@@ -75,6 +74,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:content, :question_id)
+      params[:answer].permit(:content, :question_id)
     end
 end

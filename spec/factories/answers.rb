@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :answer do
 
-    content "MyString"
+    content "Je suis une reponse cool"
     interest 0
     question
     factory :answer_build do

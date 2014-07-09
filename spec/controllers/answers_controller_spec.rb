@@ -37,11 +37,11 @@ RSpec.describe AnswersController, :type => :controller do
   let(:valid_session) { {} }
   
   # Create question for nested answer
-  let(:question) { FactoryGirl.create(:question) }
+  let!(:question) { FactoryGirl.create(:question) }
+  let!(:answer) { FactoryGirl.create(:answer, question: question) }
 
   describe "GET index" do
     it "assigns all answers as @answers" do
-      answer = Answer.create! valid_attributes
       get :index, {question_id: question.to_param}, valid_session
       expect(assigns(:answers)).to eq([answer])
     end
@@ -49,8 +49,7 @@ RSpec.describe AnswersController, :type => :controller do
 
   describe "GET show" do
     it "assigns the requested answer as @answer" do
-      answer = Answer.create! valid_attributes
-      get :show, {:id => answer.to_param, question_id: question.to_param}, valid_session
+      get :show, {id: answer.to_param, question_id: question.to_param}, valid_session
       expect(assigns(:answer)).to eq(answer)
     end
   end
@@ -64,8 +63,7 @@ RSpec.describe AnswersController, :type => :controller do
 
   describe "GET edit" do
     it "assigns the requested answer as @answer" do
-      answer = Answer.create! valid_attributes
-      get :edit, {:id => answer.to_param}, valid_session
+      get :edit, {id: answer.to_param, question_id: question.to_param}, valid_session
       expect(assigns(:answer)).to eq(answer)
     end
   end
@@ -74,30 +72,43 @@ RSpec.describe AnswersController, :type => :controller do
     describe "with valid params" do
       it "creates a new Answer" do
         expect {
-          post :create, {:answer => valid_attributes}, valid_session
+          post :create, { answer: valid_attributes,
+                          question_id: question.to_param }, valid_session
         }.to change(Answer, :count).by(1)
       end
 
       it "assigns a newly created answer as @answer" do
-        post :create, {:answer => valid_attributes}, valid_session
+        post :create, {
+          answer: valid_attributes,
+          question_id: question.to_param
+          }, valid_session
         expect(assigns(:answer)).to be_a(Answer)
         expect(assigns(:answer)).to be_persisted
       end
 
       it "redirects to the created answer" do
-        post :create, {:answer => valid_attributes}, valid_session
-        expect(response).to redirect_to(Answer.last)
+        post :create, {
+          answer: valid_attributes,
+          question_id: question.to_param
+          }, valid_session
+        expect(response).to redirect_to(question_answers_path(question))
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved answer as @answer" do
-        post :create, {:answer => invalid_attributes}, valid_session
+        post :create, {
+          answer: invalid_attributes,
+          question_id: question.to_param
+          }, valid_session
         expect(assigns(:answer)).to be_a_new(Answer)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:answer => invalid_attributes}, valid_session
+        post :create, {
+          answer: invalid_attributes,
+          question_id: question.to_param
+          }, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -105,40 +116,51 @@ RSpec.describe AnswersController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested answer" do
-        answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => new_attributes}, valid_session
+        put :update, {
+          id: answer.to_param,
+          answer: answer.attributes,
+          question_id: question.to_param
+          }, valid_session
         answer.reload
-        skip("Add assertions for updated state")
       end
 
       it "assigns the requested answer as @answer" do
-        answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => valid_attributes}, valid_session
+        put :update, {
+          id: answer.to_param,
+          answer: answer.attributes,
+          question_id: question.to_param
+          }, valid_session
         expect(assigns(:answer)).to eq(answer)
       end
 
       it "redirects to the answer" do
-        answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => valid_attributes}, valid_session
-        expect(response).to redirect_to(answer)
+        put :update, {
+          id: answer.to_param,
+          answer: answer.attributes,
+          question_id: question.to_param
+          }, valid_session
+        expect(response).to redirect_to(question_answers_path(question))
       end
     end
 
     describe "with invalid params" do
       it "assigns the answer as @answer" do
-        answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => invalid_attributes}, valid_session
+        put :update, {
+          id: answer.to_param,
+          answer: invalid_attributes,
+          question_id: question.to_param
+          }, valid_session
         expect(assigns(:answer)).to eq(answer)
       end
 
       it "re-renders the 'edit' template" do
-        answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => invalid_attributes}, valid_session
+        put :update, {
+          id: answer.to_param,
+          answer: invalid_attributes,
+          question_id: question.to_param
+          }, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -146,16 +168,20 @@ RSpec.describe AnswersController, :type => :controller do
 
   describe "DELETE destroy" do
     it "destroys the requested answer" do
-      answer = Answer.create! valid_attributes
       expect {
-        delete :destroy, {:id => answer.to_param}, valid_session
+        delete :destroy, {
+          id: answer.to_param,
+          question_id: question.to_param
+          }, valid_session
       }.to change(Answer, :count).by(-1)
     end
 
     it "redirects to the answers list" do
-      answer = Answer.create! valid_attributes
-      delete :destroy, {:id => answer.to_param}, valid_session
-      expect(response).to redirect_to(answers_url)
+      delete :destroy, {
+        id: answer.to_param,
+        question_id: question.to_param
+        }, valid_session
+      expect(response).to redirect_to(question_answers_path(question))
     end
   end
 
