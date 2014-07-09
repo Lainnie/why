@@ -4,7 +4,6 @@ body{
   margin: auto;
   font-size: 16px;
   color:$primary_color;
-  background-color: black;
 }
 a, a:visited, a:hover{
   text-decoration: none;
@@ -13,8 +12,6 @@ a, a:visited, a:hover{
 .main-header{
   padding-top: 30px;
   padding-bottom: 30px;
-  border-bottom:3px solid $primary_color;
-  border-top:3px solid $primary_color;
   .wrapper{
     &:after{
       clear: both;
@@ -66,7 +63,7 @@ a, a:visited, a:hover{
 table{
   margin: 20px auto;
   thead{
-    border-bottom:3px solid $primary_color;
+    border-bottom:1px solid $primary_color;
   }
   td, th{
     padding:5px 15px;

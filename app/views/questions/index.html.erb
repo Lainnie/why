@@ -23,7 +23,7 @@
         <td><%= question.active %></td>
         <td><%= question.created_at %></td>
         <td>
-          <%= link_to 'Show', question %>
+          <%= link_to 'Show', question_answers_path(question) %>
           <%= link_to 'Edit', edit_question_path(question) %>
           <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>

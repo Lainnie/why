@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_question
   # GET /answers
   # GET /answers.json
   def index
@@ -62,6 +62,10 @@ class AnswersController < ApplicationController
   end
 
   private
+
+    def set_question
+      @question = Question.find(params[:question_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
       redirect_to root_path if params[:question_id].nil?
