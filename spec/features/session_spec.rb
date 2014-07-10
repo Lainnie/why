@@ -4,8 +4,8 @@ context 'sign in success' do
   subject { FactoryGirl.create(:user)}
   before do
     visit new_user_session_path
-    fill_in 'Email', with: subject.email
-    fill_in 'Password', with: subject.password
+    fill_in 'user_email', with: subject.email
+    fill_in 'user_password', with: subject.password
     click_button 'Sign in'
   end
 
@@ -22,9 +22,9 @@ context 'sign up success' do
   subject { FactoryGirl.build(:user)}
   before do
     visit new_user_registration_path
-    fill_in 'Email', with: subject.email
-    fill_in 'Password', with: subject.password
-    fill_in 'Password confirmation', with: subject.password
+    fill_in 'user_email', with: subject.email
+    fill_in 'user_password', with: subject.password
+    fill_in 'user_password_confirmation', with: subject.password
     click_button 'Sign up'
   end
 
