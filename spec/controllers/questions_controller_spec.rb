@@ -35,10 +35,13 @@ RSpec.describe QuestionsController, :type => :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # QuestionsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+  let(:question) { Question.create! valid_attributes }
 
+  before do
+    sign_in question.user
+  end
   describe "GET index" do
     it "assigns all questions as @questions" do
-      question = Question.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:questions)).to eq([question])
     end
@@ -46,7 +49,6 @@ RSpec.describe QuestionsController, :type => :controller do
 
   describe "GET show" do
     it "assigns the requested question as @question" do
-      question = Question.create! valid_attributes
       get :show, {:id => question.to_param}, valid_session
       expect(assigns(:question)).to eq(question)
     end
@@ -61,7 +63,6 @@ RSpec.describe QuestionsController, :type => :controller do
 
   describe "GET edit" do
     it "assigns the requested question as @question" do
-      question = Question.create! valid_attributes
       get :edit, {:id => question.to_param}, valid_session
       expect(assigns(:question)).to eq(question)
     end
@@ -83,7 +84,7 @@ RSpec.describe QuestionsController, :type => :controller do
 
       it "redirects to the created question" do
         post :create, {:question => valid_attributes}, valid_session
-        expect(response).to redirect_to(Question.last)
+        expect(response).to redirect_to(question_answers_path(Question.last))
       end
     end
 
@@ -101,39 +102,34 @@ RSpec.describe QuestionsController, :type => :controller do
   end
 
   describe "PUT update" do
+
     describe "with valid params" do
       let(:new_attributes) {
         {}
       }
-
       it "updates the requested question" do
-        question = Question.create! valid_attributes
         put :update, {:id => question.to_param, :question => valid_attributes}, valid_session
         question.reload
       end
 
       it "assigns the requested question as @question" do
-        question = Question.create! valid_attributes
         put :update, {:id => question.to_param, :question => valid_attributes}, valid_session
         expect(assigns(:question)).to eq(question)
       end
 
-      it "redirects to the question" do
-        question = Question.create! valid_attributes
+      it "redirects to the answers" do
         put :update, {:id => question.to_param, :question => valid_attributes}, valid_session
-        expect(response).to redirect_to(question)
+        expect(response).to redirect_to(question_answers_path(question))
       end
     end
 
     describe "with invalid params" do
       it "assigns the question as @question" do
-        question = Question.create! valid_attributes
         put :update, {:id => question.to_param, :question => invalid_attributes}, valid_session
         expect(assigns(:question)).to eq(question)
       end
 
       it "re-renders the 'edit' template" do
-        question = Question.create! valid_attributes
         put :update, {:id => question.to_param, :question => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
@@ -142,14 +138,12 @@ RSpec.describe QuestionsController, :type => :controller do
 
   describe "DELETE destroy" do
     it "destroys the requested question" do
-      question = Question.create! valid_attributes
       expect {
         delete :destroy, {:id => question.to_param}, valid_session
       }.to change(Question, :count).by(-1)
     end
 
     it "redirects to the questions list" do
-      question = Question.create! valid_attributes
       delete :destroy, {:id => question.to_param}, valid_session
       expect(response).to redirect_to(questions_url)
     end

@@ -8,7 +8,7 @@ FactoryGirl.define do
     view 0
     interest 0
     active true
-    
+    user
     factory :question_with_answers do
 
       ignore do

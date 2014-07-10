@@ -13,8 +13,11 @@ class Question < ActiveRecord::Base
             numericality: { only_integer: true }
   validates :active, inclusion: { in: [true, false] }
 
+  belongs_to :user
   has_many :answers
+
   searchable do
     text :title, :content
   end
+
 end

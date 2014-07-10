@@ -11,12 +11,10 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, placeholder: 'Title' %>
   </div>
   <div class="field">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, placeholder: 'Content' %>
   </div>
   <div class="field">
     <%= f.hidden_field :interest, value: 0 %>

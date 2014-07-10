@@ -7,4 +7,5 @@ class Answer < ActiveRecord::Base
   validates :interest, numericality: { only_integer: true }
 
   belongs_to :question
+  belongs_to :user
 end

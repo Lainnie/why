@@ -1,6 +1,7 @@
-require 'pp'
 class QuestionsController < ApplicationController
+
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   # GET /questions
   # GET /questions.json
@@ -43,7 +44,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to question_answers_path(@question), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -70,6 +71,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :content, :view, :interest, :active)
+      params.require(:question).permit(:title, :content, :view, :interest, :active, :user_id)
     end
 end

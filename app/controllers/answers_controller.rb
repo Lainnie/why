@@ -1,11 +1,15 @@
 require 'pp'
 class AnswersController < ApplicationController
+
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  authorize_resource
   before_action :set_question
+
   # GET /answers
   # GET /answers.json
   def index
     @answers = @question.answers
+    @answer = Answer.new
   end
 
   # GET /answers/1
@@ -32,7 +36,7 @@ class AnswersController < ApplicationController
         format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
-        format.html { render :new }
+        format.html { redirect_to question_answers_path(@question), alert: 'Answer was not created.' }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
@@ -46,7 +50,7 @@ class AnswersController < ApplicationController
         format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully updated.' }
         format.json { render :show, status: :ok, location: @answer }
       else
-        format.html { render :edit }
+        format.html { redirect_to question_answers_path(@question) }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
@@ -74,6 +78,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params[:answer].permit(:content, :question_id)
+      params[:answer].permit(:content, :question_id, :user_id)
     end
 end
