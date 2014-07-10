@@ -3,17 +3,17 @@ class Ability
 
   def initialize(user)
 
-    alias_action :edit, :update, :destroy, to: :ud
+    alias_action :show, :edit, :update, :destroy, to: :rud
     alias_action :new, :create, to: :created
 
     user ||= User.new # guest user (not logged in)
     if user.persisted?
-      can :ud, Answer, user_id: user.id
-      can :ud, Question, user_id: user.id
+      can :rud, Answer, user_id: user.id
+      can :rud, Question, user_id: user.id
       can :created, [Question, Answer]
       can :read, :all
     else
-      can :read, :all
+      can :index, :all
     end
     #
     # The first argument to `can` is the action you are giving the user 

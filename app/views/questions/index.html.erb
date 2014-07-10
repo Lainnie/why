@@ -3,24 +3,24 @@
 <div class="listing">
   <div class="head clearfix">
     <ul class='row'>
-      <li class='col-xs-1 col-sm-2'><i class="fa fa-star"></i>Interest</li>
+      <li class='col-xs-1 col-sm-2'><i class="fa fa-star"></i>vote</li>
       <li class='col-xs-1 col-sm-2'><i class="fa fa-lightbulb-o"></i>Answer</li>
       <li class='col-xs-1 col-sm-2'><i class="fa fa-eye"></i>View</li>
-      <li class='col-xs-8 col-sm-4'><i class="fa fa-font"></i>Title</li>
-      <li class='col-xs-1 col-sm-2'><i class="fa fa-lock"></i>Active</li>
+      <li class='col-xs-8 col-sm-5'><i class="fa fa-font"></i>Title</li>
+      <li class='col-xs-1 col-sm-1'><i class="fa fa-lock"></i></li>
     </ul>
   </div>
   <div class="body">
     <% @questions.each do |question| %>
-    <ul class='row'>
+    <ul class='row <%= cycle("odd", "even") %>'>
       <li class='col-xs-1 col-sm-2'><%= question.interest %></li>
       <li class='col-xs-1 col-sm-2'><%= question.answers.size %></li>
       <li class='col-xs-1 col-sm-2'><%= question.view %></li>
-      <li class='col-xs-8 col-sm-4'>
+      <li class='col-xs-8 col-sm-5'>
         <%= link_to truncate(question.title, length: 50, omission: '...'), question_answers_path(question) %>
         <span class='time'>Last update: <%= question.updated_at %></span>
       </li>
-      <li class='col-xs-1 col-sm-2'>
+      <li class='col-xs-1 col-sm-1'>
         <% if question.active %>
           <i class="fa fa-unlock"></i>
         <% else %>

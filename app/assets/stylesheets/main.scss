@@ -1,8 +1,9 @@
 $primary_color: #51b9db;
 body{
-  max-width: 960px;
+  max-width: 1170px;
   margin: auto;
   font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.01);
   color:$primary_color;
 }
 h1{
@@ -73,29 +74,30 @@ a, a:visited, a:hover{
 .listing{
   margin: 40px auto 0;
   width: 95%;
-  table{
-    margin: 20px 0;
-    thead{
-      border-bottom:1px solid $primary_color;
-      border-top:1px solid $primary_color;
-    }
-    td, th{
-      padding:5px 15px;
+  .body{
+    ul{
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
   }
   .head{
     ul{
       border-bottom: 1px solid #ccc;
+      li{
+        font-size: 16px;
+      }
     }
   }
+
   ul{
     padding: 0;
     li{
-      text-align: center;
+      text-align: left;
       list-style: none;
       display: inline-block;
       i{
         margin-right: 10px;
+        // display: block;
       }
     }
   }
@@ -137,14 +139,16 @@ input, textarea{
     }
   }
   #answer{
+    padding-top: 10px;
     margin-bottom: 40px;
     .answer{
-      margin-top:20px;
-      margin-bottom:20px;
-      padding-bottom:10px;
+      margin-bottom:10px;
+      padding:20px 0;
     }
     hr{
-      border-bottom: solid 1px #EEEDFF;
+      border-bottom: solid 1px #cccccc;
+      margin: 0;
+      padding: 0;
     }
   }
   .info{
@@ -173,4 +177,10 @@ input, textarea{
     margin: 0;
     list-style: none;
   }
+}
+.odd{
+  background-color: rgba(0, 194, 255, 0.1);
+}
+.even{
+  background-color: rgba(255, 0, 0, 0.05);
 }

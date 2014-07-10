@@ -31,7 +31,7 @@
   </div>
   <div id="answer">
     <% @answers.each do |answer| %>
-    <div class="answer row">
+    <div class="answer clearfix <%= cycle("odd", "even") %>">
       <div class='content col-xs-10'>
         <%= answer.content %>
         <div class="more">
@@ -45,7 +45,6 @@
         </div>
       </div>
     </div>
-    <hr>
     <% end %>
   </div>
   <div class="group">
