@@ -50,7 +50,7 @@ class AnswersController < ApplicationController
         format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully updated.' }
         format.json { render :show, status: :ok, location: @answer }
       else
-        format.html { render :edit }
+        format.html { redirect_to question_answers_path(@question) }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
