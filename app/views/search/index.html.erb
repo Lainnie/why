@@ -1,3 +1,2 @@
-<h1>Results for : <%= @request %></h1>
-
-<%= render 'shared/listing_question', questions: @search.results %>
+<h1><%= @search[:results].size %> results for : <%= @search[:request] %></h1>
+<%= render 'shared/listing_question', questions: @search[:results] %>
