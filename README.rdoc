@@ -3,4 +3,5 @@
 = requirements
 
 sudo apt-get install openjdk-7-jre ( Sorry )
+
 rake sunspot:solr:start 
