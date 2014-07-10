@@ -1,8 +1,10 @@
 require 'pp'
 class AnswersController < ApplicationController
+
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-  before_action :who_can, only: [:create, :edit, :update, :destroy]
+  authorize_resource
   before_action :set_question
+
   # GET /answers
   # GET /answers.json
   def index
@@ -65,10 +67,6 @@ class AnswersController < ApplicationController
   end
 
   private
-
-    def who_can
-      authorize! :manage, Answer
-    end
 
     def set_question
       @question = Question.find(params[:question_id])

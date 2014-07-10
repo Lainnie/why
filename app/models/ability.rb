@@ -1,11 +1,17 @@
-require 'pp'
 class Ability
   include CanCan::Ability
 
   def initialize(user)
+
+    alias_action :edit, :update, :destroy, to: :ud
+    alias_action :new, :create, to: :created
+
     user ||= User.new # guest user (not logged in)
     if user.persisted?
-      can :manage, :all 
+      can :ud, Answer, user_id: user.id
+      can :ud, Question, user_id: user.id
+      can :created, [Question, Answer]
+      can :read, :all
     else
       can :read, :all
     end
