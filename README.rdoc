@@ -1,6 +1,6 @@
-== StackOverflow-like
+= StackOverflow-like
 
-= requirements
+== requirements
 
 sudo apt-get install openjdk-7-jre ( Sorry )
 
