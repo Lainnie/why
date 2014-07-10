@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers
   end
+  scope :users do
+    get 'questions' => 'questions#user', as: 'questions_user'
+    get 'answers' => 'answers#user', as: 'answers_user'
+  end
   # resources :answers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

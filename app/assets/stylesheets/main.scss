@@ -1,4 +1,4 @@
-$primary_color: #51b9db;
+$primary_color: #003F53;
 body{
   font-family: 'Roboto', sans-serif;
   max-width: 1170px;
@@ -20,8 +20,20 @@ a, a:visited, a:hover{
   color:$primary_color;
 }
 .main-header{
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 0;
+  .navbar{
+    margin-bottom: 0;
+  }
+  .navbar-header{
+    padding-top: 10px;
+  }
+  .navbar-toggle{
+    margin: 0;
+    .icon-bar{
+      background-color: $primary_color;
+    }
+  }
   i{
       margin-right: 5px;
     }
@@ -36,20 +48,47 @@ a, a:visited, a:hover{
       margin: 0;
       font-size: 2em;
     }
+    .dropdown-menu{
+      padding:10px 10px;
+      text-align: right;
+      i{
+        display: inline;
+        margin-left: 10px;
+      }
+      li{
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+    .navbar-collapse{
+      padding: 0;
+    }
+    .navbar-collapse.in{
+      padding: 0;
+      text-align: right;
+    }
+    .navbar-nav{
+      margin: 7.5px 0;
+    }
     nav{
-      float:right;
       margin: 0;
       .list{
+        padding: 0;
         li{
           display:inline-block;
           line-height: 24px;
           transition: all 0.5s ease;
           float: left;
           height: 20px;
-          margin-left: 1.25em;
           margin-left: 2.5em;
           &:first-child{
             margin-left: 0;
+          }
+          .dropdown-toggle{
+            i{
+              display: inline;
+              margin-left: 5px;
+            }
           }
         }
         .item{
@@ -98,7 +137,6 @@ a, a:visited, a:hover{
       display: inline-block;
       i{
         margin-right: 10px;
-        // display: block;
       }
     }
   }
@@ -111,6 +149,9 @@ a, a:visited, a:hover{
   margin-top: 20px;
 }
 .actions{
+}
+#search-form{
+  margin-bottom: 40px;
 }
 input, textarea{
   padding: 1em;
