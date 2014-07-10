@@ -3,7 +3,11 @@ class AnswersController < ApplicationController
 
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
   authorize_resource
-  before_action :set_question
+  before_action :set_question, except: [:user]
+
+  def user
+    @answers = Answer.where('user_id = ?', current_user.id).group(:question_id)
+  end
 
   # GET /answers
   # GET /answers.json

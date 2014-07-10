@@ -4,6 +4,10 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   authorize_resource
 
+  def user
+    @questions = Question.where('user_id = ?', current_user.id)
+  end
+
   # GET /questions
   # GET /questions.json
   def index

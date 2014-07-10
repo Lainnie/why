@@ -1,0 +1,6 @@
+<h1>User answers</h1>
+<% questions = [] %>
+<% @answers.each do |answer| %>
+  <% questions << answer.question %>
+<% end %>
+<%= render 'shared/listing_question', questions: questions %>
