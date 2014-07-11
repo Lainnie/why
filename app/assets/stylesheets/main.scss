@@ -1,9 +1,10 @@
 $primary_color: #003F53;
 body{
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   max-width: 1170px;
   margin: auto;
   font-size: 16px;
+  font-weight: 500;
   background-color: rgba(0, 0, 0, 0.01);
   color:$primary_color;
 }
@@ -164,7 +165,6 @@ input, textarea, .button{
   width: 100%;
   display: block;
   border: solid 1px #cccccc;
-  font-weight: 300;
   margin-top: 40px;
 }
 #detail{
