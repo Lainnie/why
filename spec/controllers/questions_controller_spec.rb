@@ -119,7 +119,7 @@ RSpec.describe QuestionsController, :type => :controller do
 
       it "redirects to the answers" do
         put :update, {:id => question.to_param, :question => valid_attributes}, valid_session
-        expect(response).to redirect_to(question_answers_path(question))
+        expect(response).to redirect_to(questions_user_path)
       end
     end
 
@@ -143,9 +143,9 @@ RSpec.describe QuestionsController, :type => :controller do
       }.to change(Question, :count).by(-1)
     end
 
-    it "redirects to the questions list" do
+    it "redirects to the user questions list" do
       delete :destroy, {:id => question.to_param}, valid_session
-      expect(response).to redirect_to(questions_url)
+      expect(response).to redirect_to(questions_user_path)
     end
   end
 

@@ -147,7 +147,7 @@ RSpec.describe AnswersController, :type => :controller do
           answer: answer.attributes,
           question_id: question.to_param
           }, valid_session
-        expect(response).to redirect_to(question_answers_path(question))
+        expect(response).to redirect_to(answers_user_path)
       end
     end
 
@@ -159,15 +159,6 @@ RSpec.describe AnswersController, :type => :controller do
           question_id: question.to_param
           }, valid_session
         expect(assigns(:answer)).to eq(answer)
-      end
-
-      it "redirect_to answer index" do
-        put :update, {
-          id: answer.to_param,
-          answer: invalid_attributes,
-          question_id: question.to_param
-          }, valid_session
-        expect(response).to redirect_to(question_answers_path(question))
       end
     end
   end
@@ -185,13 +176,12 @@ RSpec.describe AnswersController, :type => :controller do
       }.to change(Answer, :count).by(-1)
     end
 
-    it "redirects to the answers list" do
+    it "redirects to the user answers list" do
       delete :destroy, {
         id: answer.to_param,
         question_id: question.to_param
         }, valid_session
-      expect(response).to redirect_to(question_answers_path(question))
+      expect(response).to redirect_to(answers_user_path)
     end
   end
-
 end
