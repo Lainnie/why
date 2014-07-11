@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
   before_action :set_question, except: [:user]
 
   def user
-    @answers = Answer.where('user_id = ?', current_user.id).group(:question_id)
+    @questions = Question.user_answers current_user.id
   end
 
   # GET /answers
@@ -51,10 +51,10 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully updated.' }
+        format.html { redirect_to answers_user_path, notice: 'Answer was successfully updated.' }
         format.json { render :show, status: :ok, location: @answer }
       else
-        format.html { redirect_to question_answers_path(@question) }
+        format.html { render :edit }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
@@ -65,7 +65,7 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully destroyed.' }
+      format.html { redirect_to answers_user_path, notice: 'Answer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

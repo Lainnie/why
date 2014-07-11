@@ -153,7 +153,13 @@ a, a:visited, a:hover{
 #search-form{
   margin-bottom: 40px;
 }
-input, textarea{
+.button{
+  text-align: center;
+  &.delete{
+    background-color: rgba(255, 0, 0, 0.26);
+  }
+}
+input, textarea, .button{
   padding: 1em;
   width: 100%;
   display: block;

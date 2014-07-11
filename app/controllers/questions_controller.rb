@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   authorize_resource
 
   def user
-    @questions = Question.where('user_id = ?', current_user.id)
+    @questions = Question.user_questions current_user.id
   end
 
   # GET /questions
@@ -49,7 +49,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to question_answers_path(@question), notice: 'Question was successfully updated.' }
+        format.html { redirect_to questions_user_path, notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+      format.html { redirect_to questions_user_path, notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

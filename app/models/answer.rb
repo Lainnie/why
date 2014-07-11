@@ -1,5 +1,4 @@
 class Answer < ActiveRecord::Base
-  # default_scope { includes(:question) }
 
   include Interest
 

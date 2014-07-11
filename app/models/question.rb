@@ -1,5 +1,7 @@
 class Question < ActiveRecord::Base
   default_scope { includes(:answers) }
+  scope :user_answers, -> (user_id) { joins(:answers).where('answers.user_id = ?', user_id) }
+  scope :user_questions, -> (user_id) { where('user_id = ?', user_id) }
 
   include Interest
 
