@@ -15,7 +15,7 @@
         <i class="fa fa-star"></i><%= question.interest %>
       </div>
       <div>
-        <i class="fa fa-eye"></i><%= question.view %>
+        <i class="fa fa-eye"></i><%= question.user_view_question.count %>
       </div>
       <div>
         <% if question.active %>

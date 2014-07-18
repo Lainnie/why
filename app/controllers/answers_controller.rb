@@ -12,6 +12,8 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
+    UserViewQuestion.add_view @question, current_user if user_signed_in?
+    pp @question.user_view_question.count
     @answers = @question.answers
     @answer = Answer.new
   end

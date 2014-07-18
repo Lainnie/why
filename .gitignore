@@ -16,3 +16,4 @@
 /log
 /tmp
 /solr
+/pids/unicorn.rb
